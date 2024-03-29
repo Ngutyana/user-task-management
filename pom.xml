@@ -49,6 +49,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <arguments>-parameters</arguments>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>

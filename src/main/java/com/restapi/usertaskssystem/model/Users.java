@@ -4,16 +4,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
+@Getter
 @Entity
 
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userID;
+    public Long userID;
 
     private String userName;
-
     private String firstName;
     private String lastName;
     public Users() {
@@ -26,32 +27,16 @@ public class Users {
         this.lastName = lastName;
     }
 
-    public Long getUserID() {
-        return userID;
-    }
-
     public void setUserID(Long userID) {
         this.userID = userID;
-    }
-
-    public String getUserName() {
-        return userName;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public void setLastName(String lastName) {

@@ -37,7 +37,8 @@ public class usersController {
         out.print("User created successfully!!");
     }
 
-    @PutMapping //updating user information
+    @PutMapping ("/{userID}")
+    //updating user information
     public  void  updateUserInfo(@PathVariable Long userID, @RequestBody Users user){
         Users existingUser = usersService.getUserById(userID);
         if (existingUser != null){
