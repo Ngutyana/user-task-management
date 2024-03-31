@@ -4,16 +4,19 @@ import com.restapi.usertaskssystem.model.Tasks;
 
 import java.util.List;
 
-public interface TasksService //extends UsersService
+public interface TasksService
 {
-    Tasks getTasksById(Long taskID); //read
+    Tasks getTasksById(Long taskID, Long id); //read
     void saveTasks(Tasks tasks); //create
     void updateTasks(Tasks tasks); //update
-    void deleteTasks(Long taskID); //delete
+    void deleteTasks(Long taskID, Long id); //delete
 
-    List<Tasks> getAllTasks();  //retrieve all tasks
+    /*void updateTasksStatus();*/
 
-    //User info that worked in the project
-    /*Tasks getTaskByUserId(Long userID);  //retrieve task by user id*/
+    List<Tasks> getAllTasks(Long userID);  //retrieve all tasks
+
+    Tasks addTasks(Long userID, Tasks tasks);
+
+
 
 }

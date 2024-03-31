@@ -18,7 +18,7 @@ public class Tasks {
 
     private String name;
     private String description;
-    private LocalDate dateTime = LocalDate.now();
+    private LocalDate dateTime;
 
     public Tasks(){
 
@@ -28,7 +28,7 @@ public class Tasks {
         this.taskID = taskID;
         this.name = name;
         this.description = description;
-        this.dateTime = dateTime;
+       this.dateTime = dateTime;
     }
 
     public void setTaskID(Long taskID) {
@@ -46,5 +46,9 @@ public class Tasks {
     public void setDateTime(LocalDate dateTime) {
         this.dateTime = dateTime;
     }
+ // -----------------------------------------------------------------------------------------------------
+    public void setStatus(String done) {
 
+    }
+    //-----------------------------------------------------------------------------
 }
