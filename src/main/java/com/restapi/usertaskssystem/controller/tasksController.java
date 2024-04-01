@@ -1,6 +1,7 @@
 package com.restapi.usertaskssystem.controller;
 
 import com.restapi.usertaskssystem.model.Tasks;
+import com.restapi.usertaskssystem.model.Users;
 import com.restapi.usertaskssystem.service.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
+
+import static java.lang.System.out;
 
 
 @RestController
@@ -50,18 +53,17 @@ public class tasksController {
     }
 
     @PostMapping
-    public ResponseEntity<Tasks>addTasks(@PathVariable Long userID, @RequestBody Tasks tasks) {
-        Tasks addedTasks = tasksService.addTasks(userID, tasks);
+    public ResponseEntity<Tasks>saveTasks(@PathVariable Long userID, @RequestBody Tasks tasks) {
+        Tasks addedTasks = tasksService.saveTasks(userID, tasks);
         return ResponseEntity.created(URI.create("/api/users/" + userID + "/tasks/" + addedTasks.getTaskID())).body(addedTasks);
         }
-
 
     @PutMapping("/{taskID}")
     public ResponseEntity<Tasks> updateTasks(@PathVariable Long userID, @PathVariable Long taskID, @RequestBody Tasks tasks) {
         Tasks existingTask = tasksService.getTasksById(userID, taskID);
         if (existingTask != null){
             tasks.setTaskID(taskID);
-            tasksService.saveTasks(tasks);
+            tasksService.saveTasks(userID, tasks);
         }
         return ResponseEntity.ok(existingTask);
     }

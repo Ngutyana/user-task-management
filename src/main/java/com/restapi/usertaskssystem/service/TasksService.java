@@ -7,16 +7,12 @@ import java.util.List;
 public interface TasksService
 {
     Tasks getTasksById(Long taskID, Long id); //read
-    void saveTasks(Tasks tasks); //create
+    Tasks saveTasks(Long userID, Tasks tasks); //create
     void updateTasks(Tasks tasks); //update
     void deleteTasks(Long taskID, Long id); //delete
+    List<Tasks> getAllTasks(Long userID);  //retrieve all tasks by userID
 
     /*void updateTasksStatus();*/
-
-    List<Tasks> getAllTasks(Long userID);  //retrieve all tasks
-
-    Tasks addTasks(Long userID, Tasks tasks);
-
 
 
 }

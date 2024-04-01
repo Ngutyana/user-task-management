@@ -5,7 +5,6 @@ import com.restapi.usertaskssystem.repository.TasksRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,12 +25,8 @@ public class TasksServiceImplementation implements TasksService  {
     }
 
     @Override
-    public void saveTasks( Tasks tasks) {
-        tasksRepo.save(tasks);
-    }
-
-    @Override
-    public Tasks addTasks(Long userID, Tasks tasks) {
+    public Tasks saveTasks(Long userID, Tasks tasks) {
+        tasks.setUserID(userID);
         return tasksRepo.save(tasks);
     }
 
@@ -40,13 +35,8 @@ public class TasksServiceImplementation implements TasksService  {
         tasksRepo.save(tasks);
     }
 
-    @Override
-    public void deleteTasks(Long taskID, Long id) {
-        tasksRepo.deleteById(taskID);
-    }
-
-    //-----------------------------------------------
-    /*@Override
+/*
+        @Override
     public void updateTasksStatus() {
         List<Tasks> tasks = tasksRepo.findByStatusAndDateTimeBefore("pending", LocalDateTime.now());
         tasks.forEach(task -> {
@@ -55,7 +45,11 @@ public class TasksServiceImplementation implements TasksService  {
         });
     }
 */
-    // ---------------------------------------------------
+
+    @Override
+    public void deleteTasks(Long taskID, Long id) {
+        tasksRepo.deleteById(taskID);
+    }
 
     @Override
     public List<Tasks> getAllTasks(Long userID) {

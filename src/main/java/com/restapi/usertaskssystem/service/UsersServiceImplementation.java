@@ -17,7 +17,6 @@ public class UsersServiceImplementation implements UsersService{
         this.opsRepo = opsRepo;
     }
 
-
     @Override
     public Users getUserById(Long userID) {
         Optional<Users>optionalUsers = opsRepo.findById(userID);
