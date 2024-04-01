@@ -12,7 +12,6 @@ import java.util.Optional;
 @Service
 public class TasksServiceImplementation implements TasksService  {
 
-
     private final TasksRepo tasksRepo;
 
     @Autowired
@@ -62,7 +61,4 @@ public class TasksServiceImplementation implements TasksService  {
     public List<Tasks> getAllTasks(Long userID) {
         return tasksRepo.findAll();
     }
-
-
-
 }

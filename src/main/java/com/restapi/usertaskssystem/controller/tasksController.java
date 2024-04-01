@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import java.util.List;
 @RequestMapping("/api/users/{userID}/tasks/")
 @Component
 public class tasksController {
-
     private final TasksService tasksService;
 
     @Autowired
@@ -73,26 +71,4 @@ public class tasksController {
         tasksService.deleteTasks(userID, taskID);
         return ResponseEntity.noContent().build();
     }
-
-
 }
-
-/*
-   @PostMapping
-    public ResponseEntity<Tasks>addTasks(@PathVariable Long userID, @RequestBody Tasks tasks){
-        Tasks addedTasks = tasksService.addTasks(userID, tasks);
-        return ResponseEntity.created(URI.create("/api/users/" + userID + "/tasks" + addedTasks.getTaskID())).body(addedTasks);
-    }
-
-    @PostMapping
-    public ResponseEntity<Tasks> addTasks(@PathVariable Long userID, @RequestBody Tasks tasks) {
-        Tasks addedTasks = tasksService.addTasks(userID, tasks);
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{taskID}")
-                .buildAndExpand(addedTasks.getTaskID())
-                .toUri();
-        return ResponseEntity.created(location).body(addedTasks);
-    }
-
-*/
