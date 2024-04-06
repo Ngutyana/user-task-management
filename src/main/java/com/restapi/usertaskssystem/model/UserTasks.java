@@ -10,17 +10,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+public class UserTasks {
 
-public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long userID;
-
-    private String userName;
-    private String firstName;
-    private String lastName;
-
-
-
+    public Long id;
+    private Long userID;
+    private Long taskID;
 
 }
