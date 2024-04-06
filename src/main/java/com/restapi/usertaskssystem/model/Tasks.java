@@ -16,6 +16,8 @@ public class Tasks {
     private String name;
     private String description;
     private LocalDate dateTime;
+    private String status;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userID", referencedColumnName = "userID")
     private Users users;
@@ -23,11 +25,12 @@ public class Tasks {
     public Tasks(){
     }
 
-    public Tasks(Long taskID, String name, String description, LocalDate dateTime, Users users) {
+    public Tasks(Long taskID, String name, String description, LocalDate dateTime, String status, Users users) {
         this.taskID = taskID;
         this.name = name;
         this.description = description;
         this.dateTime = dateTime;
+        this.status = status;
         this.users = users;
     }
 
@@ -47,6 +50,10 @@ public class Tasks {
         this.dateTime = dateTime;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Long getTaskID() {
         if (users != null){
             return  users.getUserID();
@@ -62,6 +69,8 @@ public class Tasks {
         }
         users.setUserID(userID);
     }
+
+
 
    /* public void setStatus(String done) {
 

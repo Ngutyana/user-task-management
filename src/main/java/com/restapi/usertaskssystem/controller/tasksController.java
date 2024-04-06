@@ -5,6 +5,7 @@ import com.restapi.usertaskssystem.model.Users;
 import com.restapi.usertaskssystem.service.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
@@ -24,11 +25,10 @@ public class tasksController {
         this.tasksService = tasksService;
     }
 
-    // -----------------------------------------------------------------------------------
-    /*public void updateTaskStatus() {
-        tasksService.updateTasksStatus();
-    }*/
-    // ------------------------------------------------------------------------------------
+    @Scheduled(fixedRate = 60000)
+    public void updateTaskStatus() {
+        tasksService.updateTaskStatus();
+    }
 
     @GetMapping("/{taskID}")
     public ResponseEntity<Tasks> getTasksById(@PathVariable Long userID,@PathVariable Long taskID){

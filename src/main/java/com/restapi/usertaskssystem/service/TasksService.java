@@ -12,7 +12,8 @@ public interface TasksService
     void deleteTasks(Long taskID, Long id); //delete
     List<Tasks> getAllTasks(Long userID);  //retrieve all tasks by userID
 
-    /*void updateTasksStatus();*/
+    void updateTaskStatus();
+
 
 
 }

@@ -5,6 +5,7 @@ import com.restapi.usertaskssystem.repository.TasksRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,16 +36,15 @@ public class TasksServiceImplementation implements TasksService  {
         tasksRepo.save(tasks);
     }
 
-/*
-        @Override
-    public void updateTasksStatus() {
-        List<Tasks> tasks = tasksRepo.findByStatusAndDateTimeBefore("pending", LocalDateTime.now());
-        tasks.forEach(task -> {
+
+    public void updateTaskStatus() {
+        LocalDate currentDate = LocalDate.now();
+        List<Tasks> tasks = tasksRepo.findByStatusAndDateTimeBefore("pending", currentDate);
+        for (Tasks task : tasks) {
             task.setStatus("done");
             tasksRepo.save(task);
-        });
+        }
     }
-*/
 
     @Override
     public void deleteTasks(Long taskID, Long id) {
