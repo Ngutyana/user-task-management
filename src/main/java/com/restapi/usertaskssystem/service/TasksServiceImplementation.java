@@ -38,8 +38,8 @@ public class TasksServiceImplementation implements TasksService  {
 
 
     public void updateTaskStatus() {
-        LocalDate currentDate = LocalDate.now();
-        List<Tasks> tasks = tasksRepo.findByStatusAndDateTimeBefore("pending", currentDate);
+        LocalDate localDate = LocalDate.now();
+        List<Tasks> tasks = tasksRepo.findByStatusAndDateTimeBefore("pending", localDate);
         for (Tasks task : tasks) {
             task.setStatus("done");
             tasksRepo.save(task);
