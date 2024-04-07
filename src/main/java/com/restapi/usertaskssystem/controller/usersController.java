@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -61,7 +62,7 @@ public class usersController {
         if (existingUser == null){
             return new ResponseEntity<>("user doesn't exist!!", HttpStatus.NOT_FOUND);
         }
-        tasks.setDateTime(LocalDate.now());
+        tasks.setDateTime(LocalDateTime.now());
         tasks.setStatus("Pending");
         Tasks addedTasks = tasksService.saveTasks(tasks);
         UserTasks userTasks = new UserTasks();
@@ -100,7 +101,7 @@ public class usersController {
         if (userTasksService.existsByUserIDEqualsAndTaskIDEquals(userID,taskID)) {
             existingTask.setName(tasks.getName());
             existingTask.setDescription(tasks.getDescription());
-            existingTask.setDateTime(LocalDate.now());
+            existingTask.setDateTime(LocalDateTime.now());
             existingTask.setStatus("Pending");
             tasksService.saveTasks(existingTask);
             return ResponseEntity.ok(existingTask);

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,7 +17,7 @@ public class Tasks {
 
     private String name;
     private String description;
-    private LocalDate dateTime;
+    private LocalDateTime dateTime;
     private String status;
 
 }
