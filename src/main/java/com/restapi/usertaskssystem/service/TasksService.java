@@ -8,7 +8,7 @@ public interface TasksService
 {   Tasks getTasksById(Long taskID); //read
     Tasks saveTasks(Tasks tasks); //create
     void updateTasks(Tasks tasks); //update
-    void deleteTasks(Long taskID, Long id); //delete
+    void deleteTasks(Long taskID); //delete
     List<Tasks> getAllTasks(Long userID);  //retrieve all tasks by userID
 
     Tasks findById(Long taskID);

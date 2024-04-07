@@ -8,4 +8,7 @@ import java.util.List;
 public interface UserTasksRepo extends JpaRepository<UserTasks, Long> {
     List<UserTasks> findAllByUserIDEquals(Long userID);
     Boolean existsByUserIDEqualsAndTaskIDEquals(Long userID, Long taskID);
+
+
+
 }

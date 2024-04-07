@@ -71,7 +71,7 @@ public class usersController {
         return ResponseEntity.created(URI.create("/api/users/" + userID + "/tasks/" + addedTasks.getTaskID())).body(addedTasks);
     }
 
-    @GetMapping("/{userID}/tasks") //get att tasks by user id
+    @GetMapping("/{userID}/tasks") //get all tasks by user id
     public  ResponseEntity<Object> getAllTasks(@PathVariable Long userID) {
         Users existingUser = usersService.getUserById(userID);
         if (existingUser == null) {
@@ -108,19 +108,36 @@ public class usersController {
         return new ResponseEntity<>("task id doesnt match user id", HttpStatus.BAD_REQUEST);
     }
 
-  /*  @PostMapping
-    public ResponseEntity<Tasks>saveTasks(@PathVariable Long userID, @RequestBody Tasks tasks) {
-        Tasks addedTasks = tasksService.saveTasks(userID, tasks);
-        return ResponseEntity.created(URI.create("/api/users/" + userID + "/tasks/" + addedTasks.getTaskID())).body(addedTasks);
+    @GetMapping("/{userID}/tasks/{taskID}") // Get a task by user id and task id
+    public ResponseEntity<Object> getTask(@PathVariable Long userID, @PathVariable Long taskID) {
+        Users existingUser = usersService.getUserById(userID);
+        if (existingUser == null) {
+            return new ResponseEntity<>("User doesn't exist!!", HttpStatus.NOT_FOUND);
+        }
+        if (!userTasksService.existsByUserIDEqualsAndTaskIDEquals(userID, taskID)) {
+            return new ResponseEntity<>("Task doesn't exist for the given user!!", HttpStatus.NOT_FOUND);
+        }
+        Tasks task = tasksService.findById(taskID);
+        if (task == null) {
+            return new ResponseEntity<>("Task not found!!", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(task, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{userID}/tasks/{taskID}") //delete task
+    public ResponseEntity<Object> deleteTask(@PathVariable Long userID, @PathVariable Long taskID) {
+        Users existingUser = usersService.getUserById(userID);
+        if (existingUser == null) {
+            return new ResponseEntity<>("User not found!",HttpStatus.NOT_FOUND);
+        }
+        if (!userTasksService.existsByUserIDEqualsAndTaskIDEquals(userID, taskID)) {
+            return new ResponseEntity<>("Task not found",HttpStatus.NOT_FOUND);
+        }
+        tasksService.deleteTasks(taskID);
+        return ResponseEntity.noContent().build();
     }
 
 
-
-    @DeleteMapping("/{taskID}")
-    public ResponseEntity<Void> deleteTasks(@PathVariable Long userID, @PathVariable Long taskID) {
-        tasksService.deleteTasks(userID, taskID);
-        return ResponseEntity.noContent().build();
-    }*/
 }
 
 

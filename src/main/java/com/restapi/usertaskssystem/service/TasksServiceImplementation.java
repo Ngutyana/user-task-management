@@ -3,7 +3,6 @@ package com.restapi.usertaskssystem.service;
 import com.restapi.usertaskssystem.model.Tasks;
 import com.restapi.usertaskssystem.repository.TasksRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -49,7 +48,7 @@ public class TasksServiceImplementation implements TasksService  {
     }
 
     @Override
-    public void deleteTasks(Long taskID, Long id) {
+    public void deleteTasks(Long taskID) {
         tasksRepo.deleteById(taskID);
     }
 
